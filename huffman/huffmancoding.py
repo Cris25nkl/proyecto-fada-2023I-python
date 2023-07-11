@@ -1,3 +1,6 @@
+
+import huffmanbinarytree
+
 class HuffmanCoding:
     """
     Clase HuffmanCoding
@@ -7,6 +10,21 @@ class HuffmanCoding:
     """
     def __init__(self):
         pass
+    
+    
+    
+    def getDiccionario(txt):
+    
+        frecuencia_letras = {}
+
+        for letra in txt:
+            if letra.isalnum() or letra in ['.',','] or letra.isspace():  # Verificar si es una letra o espacio
+                if letra in frecuencia_letras:
+                    frecuencia_letras[letra] += 1
+                else:
+                    frecuencia_letras[letra] = 1
+            
+        return frecuencia_letras
 
     def encode(self, text):
         """
@@ -21,6 +39,8 @@ class HuffmanCoding:
         Retorna el árbol de Huffman.
         :return: árbol de Huffman
         """
+        
+        
         raise NotImplementedError("Aún no implementado")
 
     def getTable(self):
