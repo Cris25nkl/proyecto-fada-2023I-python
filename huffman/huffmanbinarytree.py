@@ -45,28 +45,20 @@ class HuffmanBinaryTree:
   
   
   def getNumberKey(self,node):
-    """
-    Retorna el valor de la llave, 
-    si es un string retorna -1, si es un 
-    numero retorna el numero.
-    """
     if node.data.isalpha():
         return -1  # Si el nodo contiene un carácter, devuelve -1
     else:
         return node.data
 
-  def getLeft(self):
-    """
-    Retorna el hijo izquierdo del arbol.
-    """
-    raise NotImplementedError("Aún no implementado")
+  def __str__(self):
+        return f'({self.key} {self.left} {self.right})' if self.left or self.right else str(self.key)
   
+  def getLeft(self):
+    if isinstance(self.left, HuffmanBinaryTree):
+        return str(self.left)
+    else: return None
 
   def getRight(self):
-    """
-    Retorna el hijo derecho del arbol.
-    """
-    raise NotImplementedError("Aún no implementado")
-  
-  
-  
+    if isinstance(self.right, HuffmanBinaryTree):
+        return str(self.right)
+    else: return None
