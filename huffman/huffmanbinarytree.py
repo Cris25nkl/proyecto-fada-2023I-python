@@ -9,23 +9,22 @@ class HuffmanBinaryTree:
     """
     self.key = None
     self.left = None
-    self.right = None  
-  
-  def getNumberKey(self,node):
-    if node.data.isalpha():
-        return -1  # Si el nodo contiene un carácter, devuelve -1
-    else:
-        return node.data
+    self.right = None
 
   def __str__(self):
         return f'({self.key} {self.left} {self.right})' if self.left or self.right else str(self.key)
   
+  def getNumberKey(self):
+        if isinstance(self.key, int):
+            return self.key
+        else: return -1 # Si el nodo contiene un carácter, devuelve -1
+  
   def getLeft(self):
-    if isinstance(self.left, HuffmanBinaryTree):
+    if self.left is not None:
         return str(self.left)
     else: return None
 
   def getRight(self):
-    if isinstance(self.right, HuffmanBinaryTree):
+    if self.right is not None:
         return str(self.right)
     else: return None
