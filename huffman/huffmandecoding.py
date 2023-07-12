@@ -1,3 +1,6 @@
+import queue as Queue
+#import HuffmanCoding as hc
+
 class HuffmanDecoding:
     """
     Clase HuffmanDecoding
@@ -15,4 +18,17 @@ class HuffmanDecoding:
         :param tree: árbol de Huffman
         :return: texto decodificado
         """
-        raise NotImplementedError("Aún no implementado")
+        #puntero temporal
+        temp = tree
+        result = []
+
+        for char in text:
+            if char is '0':
+                temp = temp.left
+            else:
+                temp = temp.right
+            if temp.left is None and temp.right is None:
+                result.append(temp.data)
+                temp = tree
+        print("".join(result))
+    
