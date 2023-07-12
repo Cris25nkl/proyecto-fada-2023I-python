@@ -17,7 +17,7 @@ class HuffmanBinaryTree:
     
   # Funcion para crear un arbol de huffman
 #  -------------------------------------------------------------------------- #
-  def crear_arbol(self, cadena):
+def crear_arbol(self, cadena):
     frecuencias = {}
     for caracter in cadena:
       if caracter in frecuencias:
@@ -44,7 +44,7 @@ class HuffmanBinaryTree:
 #  -------------------------------------------------------------------------- #
   
   
-  def getNumberKey(self,node):
+def getNumberKey(self,node):
     """
     Retorna el valor de la llave, 
     si es un string retorna -1, si es un 
@@ -54,15 +54,15 @@ class HuffmanBinaryTree:
         return -1  # Si el nodo contiene un carácter, devuelve -1
     else:
         return node.data
-
-  def getLeft(self):
+      
+def getLeft(self):
     """
     Retorna el hijo izquierdo del arbol.
     """
     raise NotImplementedError("Aún no implementado")
   
 
-  def getRight(self):
+def getRight(self):
     """
     Retorna el hijo derecho del arbol.
     """

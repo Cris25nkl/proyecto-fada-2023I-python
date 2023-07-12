@@ -1,5 +1,5 @@
 
-import huffmanbinarytree
+import huffmanbinarytree as hbt
 
 class HuffmanCoding:
     """
@@ -32,6 +32,11 @@ class HuffmanCoding:
         :param text: texto a codificar
         :return: texto codificado
         """
+        
+        arbol1 = hbt.crear_arbol(text)
+        
+        
+        
         raise NotImplementedError("Aún no implementado")
 
     def getTree(self):
