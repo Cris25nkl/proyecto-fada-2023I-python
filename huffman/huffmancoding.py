@@ -1,5 +1,6 @@
 
 import huffmanbinarytree as hbt
+from heapq import heappush, heappop, heapify
 
 class HuffmanCoding:
     """
@@ -24,13 +25,13 @@ class HuffmanCoding:
         heap=[]
         
         for caracter, frecuencia in frecuencias.items():
-            node = HuffmanBinaryTree(caracter, frecuencia)
+            node = hbt.HuffmanBinaryTree(caracter, frecuencia)
             heappush(heap, (frecuencia, node))
 
             while len(heap) > 1:
                 frecuencia1, node1 = heappop(heap)
                 frecuencia2, node2 = heappop(heap)
-                nodo_combinado = HuffmanBinaryTree(None, frecuencia1 + frecuencia2)
+                nodo_combinado = hbt.HuffmanBinaryTree(None, frecuencia1 + frecuencia2)
                 nodo_combinado.left = node1
                 nodo_combinado.right = node2
                 heappush(heap, (frecuencia1 + frecuencia2, nodo_combinado))
