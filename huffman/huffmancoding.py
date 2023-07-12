@@ -38,8 +38,7 @@ class HuffmanCoding:
         return heappop(heap)[1]
 
     #  -------------------------------------------------------------------------- #
-
-    from heapq import heappush, heappop, heapify
+    # Funcion para obtener el diccionario de frecuencias de un texto
         
     def getDiccionario(txt):
         
@@ -77,12 +76,19 @@ class HuffmanCoding:
         
         raise NotImplementedError("Aún no implementado")
 
-    def getTable(self):
+    def getTable(self,arbol, codigo_actual="", codigos={}):
         """
         Retorna la tabla de codificación.
         :return: tabla de codificación
         """
-        raise NotImplementedError("Aún no implementado")
+        if arbol.key:
+            codigos[arbol.key] = codigo_actual
+        else:
+            getTable(arbol.left, codigo_actual + "0", codigos)
+            getTable(arbol.right, codigo_actual + "1", codigos)
+        return codigos
+    
+    
 
     def getSummary(self):
         """
