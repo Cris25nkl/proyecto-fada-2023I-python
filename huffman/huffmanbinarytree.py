@@ -12,7 +12,7 @@ class HuffmanBinaryTree:
     self.right = None
 
   def __str__(self):
-        return f'({self.key} {self.left} {self.right})' if self.left or self.right else str(self.key)
+        return f'({self.key} {self.getLeft()} {self.getRight()})' if self.left or self.right else str(self.key)
   
   def getNumberKey(self):
         if isinstance(self.key, int):
@@ -21,10 +21,10 @@ class HuffmanBinaryTree:
   
   def getLeft(self):
     if self.left is not None:
-        return str(self.left)
+        return self.left
     else: return None
 
   def getRight(self):
     if self.right is not None:
-        return str(self.right)
+        return self.right
     else: return None
