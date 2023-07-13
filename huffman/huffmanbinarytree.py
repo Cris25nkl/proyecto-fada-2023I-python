@@ -3,13 +3,18 @@ class HuffmanBinaryTree:
   Clase que implementa un árbol binario de Huffman
   Autor:<Estudiantes>
   """ 
-  def __init__(self, key=None, left=None, right=None):
+  def __init__(self, key, freq=0):
     """
     Constructor de la clase
     """
-    self.key = None
-    self.left = None
+    self.key = key
+    self.freq = freq
     self.right = None
+    self.left = None
+    
+    
+  def __lt__(self, other):
+    return self.freq < other.freq
 
   def __str__(self):
         return f'({self.key} {self.left} {self.right})' if self.left or self.right else str(self.key)

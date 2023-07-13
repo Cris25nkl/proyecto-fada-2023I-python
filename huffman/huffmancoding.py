@@ -1,6 +1,7 @@
 
-import huffmanbinarytree as hbt
-from heapq import heappush, heappop, heapify
+from huffmanbinarytree import HuffmanBinaryTree
+from heapq import heappush, heappop
+import queue
 
 class HuffmanCoding:
     """
@@ -13,36 +14,22 @@ class HuffmanCoding:
         pass
     
 
-    #  -------------------------------------------------------------------------- #
-    # Funcion para obtener el diccionario de frecuencias de un texto
-        
-    # def getDiccionario(txt):
-        
-    #     frecuencia_letras = {}
-
-    #     for letra in txt:
-    #         if letra.isalnum() or letra in ['.',','] or letra.isspace():  # Verificar si es una letra o espacio
-    #             if letra in frecuencia_letras:
-    #                 frecuencia_letras[letra] += 1
-    #             else:
-    #                 frecuencia_letras[letra] = 1
-            
-    #     return frecuencia_letras
-
     def compression(self):
         pass
 
+    
     def encode(self, text):
         """
         :param text: texto a codificar
         :return: texto codificado
         """
-        codigo = ""
-        #nuevoArbol = crear_arbol(text)
-        arbol = self.getTree(text)
-
-
-        return codigo
+        codigo = {}
+        arbol=HuffmanCoding.getTree(text)
+        
+        
+        return arbol
+        
+        
 
     def getTree(self):
         """
@@ -50,43 +37,65 @@ class HuffmanCoding:
         :return: árbol de Huffman
         """
         
-        cadena = "Hola mundo"
-        
         frecuencias = {}
-        for caracter in cadena:
-            if caracter in frecuencias:
-                frecuencias[caracter] += 1
+        for car in self:
+            if car in frecuencias:
+                frecuencias[car] += 1
             else:
-                frecuencias[caracter] = 1
+                frecuencias[car] = 1
+                
+    
+                
+        print(frecuencias)
         
-        heap=[]
-        
-        for caracter, frecuencia in frecuencias.items():
-            node = hbt.HuffmanBinaryTree(caracter, frecuencia)
-            heappush(heap, (frecuencia, node))
+        priority_queue = []
+        for character, frequency in frecuencias.items():
+            node = HuffmanBinaryTree(character, frequency)
+            heappush(priority_queue, node)
 
-            while len(heap) > 1:
-                frecuencia1, node1 = heappop(heap)
-                frecuencia2, node2 = heappop(heap)
-                nodo_combinado = hbt.HuffmanBinaryTree(None, frecuencia1 + frecuencia2)
-                nodo_combinado.left = node1
-                nodo_combinado.right = node2
-                heappush(heap, (frecuencia1 + frecuencia2, nodo_combinado))
-        return heappop(heap)[1]
+        while len(priority_queue) > 1:
+            right_child = heappop(priority_queue)
+            left_child = heappop(priority_queue)
+            
+            parent_frequency = left_child.freq + right_child.freq
+            parent_node = HuffmanBinaryTree(parent_frequency, parent_frequency)
+            parent_node.left = left_child
+            parent_node.right = right_child
+            heappush(priority_queue, parent_node)
+
+        return heappop(priority_queue)
+        
+        
+        
+        
+        # cola_prioridad = []
+        # for car, freq in frecuencias.items():
+            
+        #     nodo = HuffmanBinaryTree(car, freq)
+        #     heappush(cola_prioridad, nodo)
+
+        # while len(cola_prioridad) > 1:
+        #     nodo_izq = heappop(cola_prioridad)
+        #     nodo_der = heappop(cola_prioridad)
+        #     suma_freq = nodo_izq.freq + nodo_der.freq
+        #     nodo_padre = HuffmanBinaryTree(None, suma_freq)
+        #     nodo_padre.izq = nodo_izq
+        #     nodo_padre.der = nodo_der
+        #     heappush(cola_prioridad, nodo_padre)
+
+        # return heappop(cola_prioridad)
+    
+        
+        
         
         
 
-    def getTable(self,arbol, codigo_actual="", codigos={}):
+    def getTable(self):
         """
         Retorna la tabla de codificación.
         :return: tabla de codificación
         """
-        if arbol.key:
-            codigos[arbol.key] = codigo_actual
-        else:
-            self.getTable(arbol.left, codigo_actual + "0", codigos)
-            self.getTable(arbol.right, codigo_actual + "1", codigos)
-        return codigos
+       
     
     
 
@@ -96,3 +105,7 @@ class HuffmanCoding:
         :return: resumen de la codificación en formato string
         """
         raise NotImplementedError("Aún no implementado")
+    
+    
+    
+
