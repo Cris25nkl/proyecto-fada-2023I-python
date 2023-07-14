@@ -8,7 +8,10 @@ class HuffmanCoding:
     """
     Clase HuffmanCoding
     Esta clase se encarga de codificar un texto en base a un árbol de Huffman
-    Autor: <Estudiantes>
+    Autor:  Cristian Florez
+            Jesus Alberto Gil
+            Andrés Cruz
+            Jorge Augusto Estacio
     Version: <1>
     """
     def __init__(self):

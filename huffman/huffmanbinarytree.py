@@ -1,7 +1,10 @@
 class HuffmanBinaryTree:
   """
   Clase que implementa un árbol binario de Huffman
-  Autor:<Estudiantes>
+  Autor:    Autor:  Cristian Florez
+            Jesus Alberto Gil
+            Andrés Cruz
+            Jorge Augusto Estacio
   """ 
   def __init__(self, key, freq=0):
     """
