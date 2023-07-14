@@ -12,17 +12,16 @@ class HuffmanBinaryTree:
     self.right = None
     self.left = None
     
-    
   def __lt__(self, other):
     return self.freq < other.freq
 
   def __str__(self):
-        return f'({self.key} {self.getLeft()} {self.getRight()})' if self.left or self.right else str(self.key)
+    return f'({self.key} {self.getLeft()} {self.getRight()})' if self.left or self.right else str(self.key)
   
   def getNumberKey(self):
-        if isinstance(self.key, int):
-            return self.key
-        else: return -1 # Si el nodo contiene un carácter, devuelve -1
+    if isinstance(self.key, int):
+        return self.key
+    else: return -1 # Si el nodo contiene un carácter, devuelve -1
   
   def getLeft(self):
     if self.left is not None:
