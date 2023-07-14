@@ -11,11 +11,16 @@ class HuffmanCoding:
     Version: <1>
     """
     def __init__(self):
+        self.tree = None
+        self.tabla = None
+        self.text = None
+        self.codigo = None
+        self.compress = None
         pass
     
 
     def compression(self,len1,len2):
-        compress = (1-(len1/len2)) * 100
+        compress = (1-(len1/(len2 * 256))) * 100
         return compress
 
     
@@ -24,8 +29,9 @@ class HuffmanCoding:
         :param text: texto a codificar
         :return: texto codificado
         """
+        self.text = text
         
-        if text is "":
+        if text == "":
             return ""
         
         len1 = len(text)
@@ -76,14 +82,14 @@ class HuffmanCoding:
         self.compress = self.compression(len(text),len(self.codigo))
     # ------------------------------------------------------------------------------------#
     
-    def recorrer_arbol(self, codigo_actual="", tablas={}):
+    def recorrer_arbol(self, nodo,codigo_actual="", tablas={}):
         # Se crea la tabla de codificación ----------------------------------------------------#
         
-        if self.tree.key is not None:
-            tablas[self.tree.key] = codigo_actual
+        if nodo.key is not None:
+            tablas[nodo.key] = codigo_actual
         else:
-            HuffmanCoding.recorrer_arbol(self.tree.left.key, codigo_actual + "0", tablas)
-            HuffmanCoding.recorrer_arbol(self.tree.right.key, codigo_actual + "1", tablas)
+            HuffmanCoding.recorrer_arbol(nodo.left, codigo_actual + "0", tablas)
+            HuffmanCoding.recorrer_arbol(nodo.right, codigo_actual + "1", tablas)
         
         return tablas
     #------------------------------------------------------------------------------------#
@@ -108,18 +114,37 @@ class HuffmanCoding:
        
         return self.tabla
     
+    
+    def contar_nodos_huffman(self, nodo):
+        if nodo is None:
+            return 0
+
+        return 1 + self.contar_nodos_huffman(nodo.left) + self.contar_nodos_huffman(nodo.right)
+    
+    def obtener_profundidad_huffman(self, nodo):
+        if nodo is None:
+            return 0
+
+        profundidad_izquierda = self.obtener_profundidad_huffman(nodo.left)
+        profundidad_derecha = self.obtener_profundidad_huffman(nodo.right)
+
+        return max(profundidad_izquierda, profundidad_derecha) + 1
+    
 
     def getSummary(self):
         """
         Retorna el resumen de la codificación.
         :return: resumen de la codificación en formato string
         """
+        nodos = self.contar_nodos_huffman(self.tree)
+        profundidad = self.obtener_profundidad_huffman(self.tree)
+        
         if self.tree is not None:
         
             return {
                 "compresion" : self.compress,
-                "Numero de nodos" : "por deducir",
-                "Profundidad" : "por deducir"}
+                "Numero de nodos" : nodos,
+                "Profundidad" : profundidad}
         else:
             return ""
 
