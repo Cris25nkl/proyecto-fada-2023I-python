@@ -1,5 +1,6 @@
 
 from huffmanbinarytree import HuffmanBinaryTree
+from huffmandecoding import HuffmanDecoding
 from heapq import heappush, heappop
 import queue
 
@@ -30,9 +31,6 @@ class HuffmanCoding:
         :return: texto codificado
         """
         self.text = text
-        
-        if text == "":
-            return ""
         
         len1 = len(text)
         
@@ -67,10 +65,12 @@ class HuffmanCoding:
 
         self.tree =  heappop(priority_queue)
         
+        print("Retorno del arbol\n",self.tree)
+        
         # Se crea la tabla de codificación ----------------------------------------------------#
         self.tabla = self.recorrer_arbol(self.tree)
         
-        
+        print("Retorno de la tabla\n",self.tabla)
         codigo = "" 
         
         for cod in self.codigo:
@@ -148,7 +148,11 @@ class HuffmanCoding:
         else:
             return ""
 
-       
+
+decode = HuffmanDecoding() #Se crea una instancia pra importar la decodificacion.
+encode = HuffmanCoding() #Se crea una instancia pra importar la codificacion.
+
+encode.encode("mi pasion es programar") #Se codifica el texto.
     
     
     
